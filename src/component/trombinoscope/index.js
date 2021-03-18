@@ -1,31 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import {useDispatch, useSelector} from 'react-redux';
+import {getTrombinoscope} from '../../actions/trombinoscope';
 
 const Trombinoscope = (props) =>{
 
-       
-    const [trombinoscopeList, setTrombinoscope] = useState([])
-    const axios = require('axios');
-
-     /* Hugo-Jean EGU */
-    useEffect( () => {
-        axios.get('http://hp-api.herokuapp.com/api/characters')
-        .then(res => {
-            setTrombinoscope(res.data)
-        })
-        .catch(err => {
-            console.log(err);
-        })
-
-    }, [])
-
-    /* Adrien LEIB */
-    // useEffect( async () => {
-    //     const newTrombinoscope = await axios.get('http://hp-api.herokuapp.com/api/characters')
-    //     setTrombinoscope(newTrombinoscope.data);
-
-    // }, []
-    // );
+    
+    const dispatch = useDispatch();
+     useEffect(() => {
+        dispatch(getTrombinoscope());
+     }, [])
+     const trombinoscopeList = useSelector(state => state.trombinoscope.list)
 
 
     
